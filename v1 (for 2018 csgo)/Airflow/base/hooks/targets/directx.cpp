@@ -18,12 +18,13 @@ namespace tr::direct
 {
   HRESULT __stdcall present( IDirect3DDevice9* device, const RECT* src_rect, const RECT* dest_rect, HWND window_override, const RGNDATA* dirty_region )
   {
+      static auto original = vtables[vmt_direct].original<decltype(&present)>(xor_int(17));
     if( g_ctx.uninject )
-      return original_present( device, src_rect, dest_rect, window_override, dirty_region );
+      return original( device, src_rect, dest_rect, window_override, dirty_region );
 
     IDirect3DStateBlock9* d3d9_state_block = nullptr;
     if( device->CreateStateBlock( D3DSBT_PIXELSTATE, &d3d9_state_block ) < 0 )
-      return original_present( device, src_rect, dest_rect, window_override, dirty_region );
+      return original( device, src_rect, dest_rect, window_override, dirty_region );
 
     d3d9_state_block->Capture( );
 
@@ -86,19 +87,20 @@ namespace tr::direct
     d3d9_state_block->Apply( );
     d3d9_state_block->Release( );
 
-    return original_present( device, src_rect, dest_rect, window_override, dirty_region );
+    return original( device, src_rect, dest_rect, window_override, dirty_region );
   }
 
   HRESULT __stdcall reset( IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* params )
   {
+      static auto original = vtables[vmt_direct].original<decltype(&reset)>(xor_int(16));
     if( g_ctx.uninject )
-      return original_reset( device, params );
+      return original( device, params );
 
     imgui_blur::on_device_reset( );
 
     g_render->invalidate_objects( );
     g_render->create_objects( );
 
-    return original_reset( device, params );
+    return original( device, params );
   }
 }

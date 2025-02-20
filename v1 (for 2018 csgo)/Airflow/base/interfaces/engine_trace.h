@@ -1,5 +1,6 @@
 #pragma once
 #include "../tools/math.h"
+#include <algorithm>
 
 enum dispsurf_t
 {

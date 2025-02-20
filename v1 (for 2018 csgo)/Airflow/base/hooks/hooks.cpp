@@ -13,6 +13,7 @@ namespace hooks
 {
   __forceinline void hook_vmt( )
   {
+    const auto d3d_device = **patterns::direct_device.as<IDirect3DDevice9***>();
     vtables [ vtables_t::client ].setup( interfaces::client );
     vtables [ vtables_t::panel ].setup( interfaces::panel );
     vtables [ vtables_t::surface ].setup( interfaces::surface );
@@ -35,6 +36,7 @@ namespace hooks
     vtables [ vtables_t::cl_clock_correction ].setup( cvars::cl_clock_correction );
     vtables [ vtables_t::net_showfragments ].setup( cvars::net_showfragments );
     vtables [ vtables_t::material_system ].setup( interfaces::material_system );
+    vtables [ vtables_t::vmt_direct ].setup( d3d_device );
 
     vtables [ vtables_t::client ].hook( xor_int( 5 ), tr::client::level_init_pre_entity );
     vtables [ vtables_t::client ].hook( xor_int( 6 ), tr::client::level_init_post_entity );
@@ -86,11 +88,8 @@ namespace hooks
 
     vtables [ vtables_t::material_system ].hook( xor_int( 84 ), tr::material_system::find_material );
 
-    original_present = **reinterpret_cast< decltype( &original_present )* >( patterns::direct_present.as< uintptr_t >( ) );
-    **reinterpret_cast< void*** >( patterns::direct_present.as< uintptr_t >( ) ) = reinterpret_cast< void* >( &tr::direct::present );
-
-    original_reset = **reinterpret_cast< decltype( &original_reset )* >( patterns::direct_reset.as< uintptr_t >( ) );
-    **reinterpret_cast< void*** >( patterns::direct_reset.as< uintptr_t >( ) ) = reinterpret_cast< void* >( &tr::direct::reset );
+    vtables [ vtables_t::vmt_direct ].hook( xor_int( 17 ), tr::direct::present );
+	vtables [ vtables_t::vmt_direct ].hook( xor_int( 16 ), tr::direct::reset );
 
     g_netvar_manager->hook_prop( __fnva1( "DT_BaseViewModel" ), __fnva1( "m_nSequence" ), ( recv_var_proxy_fn )tr::netvar_proxies::viewmodel_sequence, original_sequence, true );
   }
@@ -163,9 +162,6 @@ namespace hooks
       v.unhook_all( );
 
     hooker.restore( );
-
-    **reinterpret_cast< void*** >( patterns::direct_present.as< uintptr_t >( ) ) = reinterpret_cast< void* >( original_present );
-    **reinterpret_cast< void*** >( patterns::direct_reset.as< uintptr_t >( ) ) = reinterpret_cast< void* >( original_reset );
 
     g_netvar_manager->hook_prop( __fnva1( "DT_BaseViewModel" ), __fnva1( "m_nSequence" ), original_sequence, original_sequence, false );
 #endif

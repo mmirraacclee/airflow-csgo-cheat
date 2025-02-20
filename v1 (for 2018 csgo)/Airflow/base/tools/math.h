@@ -3,6 +3,8 @@
 #include <corecrt_math.h>
 #include <xmmintrin.h>
 #include <pmmintrin.h>
+#include <float.h>
+#include <limits>
 
 #define PI 3.14159265358979323846
 static const float invtwopi = 0.1591549f;
