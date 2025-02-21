@@ -3,7 +3,7 @@ my discord : https://discord.gg/CWEp8bQrWc
 ## Status :
 * Airflow v1 : fully fixed
 * Airflow v1.5 : fully fixed
-* Airflow v1 (2018) : didnt check yet 
+* Airflow v1 (2018) : fully fixed 
 
 # Overview
 The latest version of AIRFLOW.SU \
