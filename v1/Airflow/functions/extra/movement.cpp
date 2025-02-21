@@ -327,6 +327,9 @@ void c_movement::auto_strafe()
 
 	bool m_pressing_move = holding_w || holding_a || holding_s || holding_d;
 
+	if (!m_pressing_move)
+		return;
+
 	static auto switch_key = 1.f;
 	static auto circle_yaw = 0.f;
 	static auto old_yaw = 0.f;
