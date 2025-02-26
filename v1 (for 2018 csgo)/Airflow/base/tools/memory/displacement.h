@@ -118,8 +118,6 @@ namespace patterns
   extern c_address send_net_msg;
   extern c_address assign_str;
   extern c_address process_packet;
-  extern c_address direct_reset;
-  extern c_address direct_present;
   extern c_address direct_device;
   extern c_address screen_matrix;
   extern c_address local;

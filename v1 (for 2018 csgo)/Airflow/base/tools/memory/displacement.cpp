@@ -135,8 +135,6 @@ namespace patterns
   c_address send_net_msg{ };
   c_address assign_str{ };
   c_address process_packet{ };
-  c_address direct_reset{ };
-  c_address direct_present{ };
   c_address direct_device{ };
   c_address screen_matrix{ };
   c_address local{ };
@@ -271,8 +269,6 @@ namespace patterns
     send_net_msg = g_memory->find_pattern( modules::engine, xor_c_s( "55 8B EC 83 EC 08 56 8B F1 8B 4D 04" ) );
     assign_str = g_memory->find_pattern( modules::engine, xor_c_s( "55 8B EC 53 8B 5D 08 56 8B F1 85 DB 74 57 8B 4E 14 83 F9 10 72 04 8B 06 EB 02" ) );
     process_packet = g_memory->find_pattern( modules::engine, xor_c_s( "55 8B EC 83 E4 C0 81 EC ? ? ? ? 53 56 57 8B 7D 08 8B D9" ) );
-    direct_present = g_memory->find_pattern( modules::gameoverlayrenderer, xor_c_s( "FF 15 ? ? ? ? 8B F0 85 FF" ) ).add( 2 );
-    direct_reset = g_memory->find_pattern( modules::gameoverlayrenderer, xor_c_s( "C7 45 ? ? ? ? ? FF 15 ? ? ? ? 8B D8" ) ).add( 9 );
     direct_device = g_memory->find_pattern( modules::shaderapidx9, xor_c_s( "A1 ? ? ? ? 50 8B 08 FF 51 0C" ) ).add( 1 );
     screen_matrix = g_memory->find_pattern( modules::client, xor_c_s( "0F 10 05 ? ? ? ? 8D 85 ? ? ? ? B9" ) );
     local = g_memory->find_pattern( modules::client, xor_c_s( "8B 0D ? ? ? ? 83 FF FF 74 07" ) ).add( 2 );

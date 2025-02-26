@@ -152,6 +152,7 @@ enum vtables_t
   cl_clock_correction,
   net_showfragments,
   material_system,
+  vmt_direct,
   vmt_max
 };
 

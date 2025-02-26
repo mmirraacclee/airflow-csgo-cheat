@@ -65,6 +65,9 @@ void c_movement::auto_strafe()
 
 	auto pressing_move = holding_w || holding_a || holding_s || holding_d;
 
+	if (!pressing_move)
+		return;
+
 	vec3_t velocity = HACKS->local->velocity();
 	velocity.z = 0.f;
 

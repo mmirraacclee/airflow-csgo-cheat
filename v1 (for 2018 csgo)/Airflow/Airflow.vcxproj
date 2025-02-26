@@ -30,7 +30,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -72,8 +72,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(DXSDK_Dir)\Lib\x86;$(SolutionDir)\Airflow\additionals\freetype\objs;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(DXSDK_Dir)\Include;$(SolutionDir)\Airflow\additionals\freetype\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_Dir)\Lib\x86;$(SolutionDir)\Airflow\additionals\freetype\objs;E:\June 2010 SDK\Lib\x86;$(SolutionDir)\Airflow\additionals\minhook;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_Dir)\Include;$(SolutionDir)\Airflow\additionals\freetype\include;E:\June 2010 SDK\Include;$(IncludePath)</IncludePath>
     <TargetName>csgo-legacy-debug</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -101,7 +101,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SecureEngineSDK32.lib;crypto-46.lib;shared.lib;ssl-48.lib;tls-20.lib;zlibstatic.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

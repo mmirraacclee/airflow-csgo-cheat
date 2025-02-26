@@ -67,9 +67,6 @@
     <Filter Include="functions\ragebot">
       <UniqueIdentifier>{8d2ec8c3-ca47-46b6-9e56-b1f35fe7a423}</UniqueIdentifier>
     </Filter>
-    <Filter Include="base\tools\connection">
-      <UniqueIdentifier>{84ef1f2f-870f-4c19-8441-2d80af9ed958}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="additionals\json\json.h">
